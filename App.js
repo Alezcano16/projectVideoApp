@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -18,6 +10,7 @@ import {
 } from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
+import SuggestionList from './src/videos/containers/SuggestionList';
 import {
   LearnMoreLinks,
   Colors,
@@ -34,8 +27,10 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Home>
-            <Header />
-            <Text>Aqui va el buscador</Text>
+            <Header>
+              <Text>Hola desde Header </Text>
+            </Header>
+            <SuggestionList />
             <Text>Aqui van los videos</Text>
           </Home>
         </ScrollView>
