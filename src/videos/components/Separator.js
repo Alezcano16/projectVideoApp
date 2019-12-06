@@ -9,14 +9,14 @@ const Separator = props => {
         {
           borderTopColor: props.color ? props.color : '#eaeaea',
         },
-      ]}>
-      <Text>Esto es un separador</Text>
-    </View>
+      ]}
+    />
   );
 };
 const styles = StyleSheet.create({
   separator: {
     borderTopWidth: 1,
+    paddingVertical: 5,
   },
 });
 

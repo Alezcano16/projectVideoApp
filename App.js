@@ -17,8 +17,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+type Props = {}
+const App: () => React$Node<Props> = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
