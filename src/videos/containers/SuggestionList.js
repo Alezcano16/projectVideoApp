@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, SafeAreaView} from 'react-native';
+import {FlatList, Text, StyleSheet, SafeAreaView} from 'react-native';
 import Layout from '../../videos/components/SuggestionListLayout';
 import Empty from '../../videos/components/Empty';
 import Separator from '../../videos/components/Separator';
@@ -48,7 +48,7 @@ class SuggestionList extends Component {
     ];
     return (
       <Layout title="Recomendado para ti">
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
           <FlatList
             data={this.state.list}
             ItemSeparatorComponent={this.ItemSeparator}
@@ -60,5 +60,9 @@ class SuggestionList extends Component {
     );
   }
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 export default SuggestionList;
