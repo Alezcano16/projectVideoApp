@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,33 +11,68 @@ import {
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/videos/containers/SuggestionList';
+import API from './src/utils/Api';
+
 import {
   LearnMoreLinks,
   Colors,
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-type Props = {}
-const App: () => React$Node<Props> = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Home>
-            <Header>
-              <Text>Hola desde Header </Text>
-            </Header>
-            <SuggestionList />
-            <Text>Aqui van los videos</Text>
-          </Home>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+
+type Props = {};
+class App extends Component<Props> {
+  state = {
+    list: [],
+  };
+  async componentDidMount() {
+    const Movies = await API.getSuggestion(2);
+    console.log(Movies);
+    this.setState({list: Movies});
+    //this.fetchData();
+  }
+  render() {
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <Home>
+              <Header>
+                <Text>Hola desde Header </Text>
+              </Header>
+              <SuggestionList list={this.state.list} />
+              <Text>Aqui van los videos</Text>
+            </Home>
+          </ScrollView>
+        </SafeAreaView>
+      </>
+    );
+  }
+}
+// type Props = {}
+// const App: () => React$Node<Props> = () => {
+//   return (
+//     <>
+//       <StatusBar barStyle="dark-content" />
+//       <SafeAreaView>
+//         <ScrollView
+//           contentInsetAdjustmentBehavior="automatic"
+//           style={styles.scrollView}>
+//           <Home>
+//             <Header>
+//               <Text>Hola desde Header </Text>
+//             </Header>
+//             <SuggestionList />
+//             <Text>Aqui van los videos</Text>
+//           </Home>
+//         </ScrollView>
+//       </SafeAreaView>
+//     </>
+//   );
+// };
 
 const styles = StyleSheet.create({
   imgLogo: {

@@ -5,15 +5,15 @@ const Suggestions = props => {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Image style={styles.cover} source={require('../../assets/logo.png')} />
+        <Image style={styles.cover} source={{uri: props.medium_cover_image}} />
         <View style={styles.genreContainer}>
           <Text style={styles.genre}>Action</Text>
         </View>
       </View>
       <View style={styles.right}>
-        <Text style={styles.title}> {props.NombreModelo}</Text>
-        <Text style={styles.year}> {props.AnnoModelo.trim()}</Text>
-        <Text style={styles.rating}> {props.TipoCarro}</Text>
+        <Text style={styles.title}> {props.title}</Text>
+        <Text style={styles.year}> {props.year}</Text>
+        <Text style={styles.rating}> {props.rating}</Text>
       </View>
     </View>
   );

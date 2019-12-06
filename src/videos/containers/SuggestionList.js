@@ -6,12 +6,6 @@ import Separator from '../../videos/components/Separator';
 import Suggestions from '../../videos/components/Suggestions';
 
 class SuggestionList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    };
-  }
   RenderEmpty = () => {
     return <Empty text="No hay Sugerencias" />;
   };
@@ -32,9 +26,7 @@ class SuggestionList extends Component {
   RenderItem = ({item}) => {
     return <Suggestions {...item} />;
   };
-  componentDidMount() {
-    this.fetchData();
-  }
+
   render() {
     const list = [
       {
@@ -46,11 +38,12 @@ class SuggestionList extends Component {
         key: '2',
       },
     ];
+    console.log(this.props.list);
     return (
       <Layout title="Recomendado para ti">
         <SafeAreaView style={styles.container}>
           <FlatList
-            data={this.state.list}
+            data={this.props.list}
             ItemSeparatorComponent={this.ItemSeparator}
             ListEmptyComponent={this.RenderEmpty}
             renderItem={this.RenderItem}
