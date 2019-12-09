@@ -11,6 +11,7 @@ import {
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/videos/containers/SuggestionList';
+import CategoriesList from './src/videos/containers/CategoriesList';
 import API from './src/utils/Api';
 
 import {
@@ -23,12 +24,14 @@ import {
 type Props = {};
 class App extends Component<Props> {
   state = {
-    list: [],
+    listSuggestions: [],
+    listCategories: [],
   };
   async componentDidMount() {
-    const Movies = await API.getSuggestion(2);
-    console.log(Movies);
-    this.setState({list: Movies});
+    const MoviesSuggestion = await API.getSuggestion(10);
+    const Categories = await API.getMovies();
+    console.log(Categories);
+    this.setState({listSuggestions: MoviesSuggestion, Categories: Categories});
     //this.fetchData();
   }
   render() {
@@ -43,8 +46,8 @@ class App extends Component<Props> {
               <Header>
                 <Text>Hola desde Header </Text>
               </Header>
-              <SuggestionList list={this.state.list} />
-              <Text>Aqui van los videos</Text>
+              <CategoriesList list={this.state.Categories} />
+              <SuggestionList list={this.state.listSuggestions} />
             </Home>
           </ScrollView>
         </SafeAreaView>

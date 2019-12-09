@@ -5,9 +5,14 @@ const Suggestions = props => {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Image style={styles.cover} source={{uri: props.medium_cover_image}} />
+        <Image
+          style={styles.cover}
+          source={{
+            uri: props.medium_cover_image,
+          }}
+        />
         <View style={styles.genreContainer}>
-          <Text style={styles.genre}>Action</Text>
+          <Text style={styles.genre}>{props.genres[0]}</Text>
         </View>
       </View>
       <View style={styles.right}>
