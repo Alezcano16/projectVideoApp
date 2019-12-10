@@ -1,5 +1,4 @@
-const BASE_API = 'https://yts.am/api/v2/';
-
+const BASE_API = 'https://yts.lt/api/v2/';
 class Api {
   async getSuggestion(id) {
     const query = await fetch(
