@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {FlatList, View, Text, StyleSheet, SafeAreaView} from 'react-native';
-import Layout from '../../videos/components/SuggestionListLayout';
+import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import Layout from '../../videos/components/CategoriesListLayout';
 import Empty from '../../videos/components/Empty';
-import Separator from '../../videos/components/Separator';
-import Suggestions from '../../videos/components/Suggestions';
+import Separator from '../../videos/components/SeparatorHorizontal';
+import Category from '../../videos/components/Category';
 
 export default class CategoryList extends Component {
   RenderEmpty = () => {
@@ -13,12 +13,12 @@ export default class CategoryList extends Component {
     return <Separator />;
   };
   RenderItem = ({item}) => {
-    return <Suggestions {...item} />;
+    return <Category {...item} />;
   };
   keyExtractor = item => item.id.toString();
   render() {
     return (
-      <Layout title="Recomendado para ti">
+      <Layout title="Categorías">
         <SafeAreaView style={styles.container}>
           <FlatList
             horizontal={true}
@@ -36,6 +36,6 @@ export default class CategoryList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 200,
+    height: 100,
   },
 });

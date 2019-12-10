@@ -20,7 +20,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import Video from 'react-native-video';
 type Props = {};
 class App extends Component<Props> {
   state = {
@@ -46,6 +46,17 @@ class App extends Component<Props> {
               <Header>
                 <Text>Hola desde Header </Text>
               </Header>
+              <View style={styles.videoContainer}>
+                <Video
+                  source={{uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} // Can be a URL or a local file.
+                  ref={ref => {
+                    this.player = ref;
+                  }} // Store reference
+                  onBuffer={this.onBuffer} // Callback when remote video is buffering
+                  onError={this.videoError} // Callback when video cannot be loaded
+                  style={styles.backgroundVideo}
+                />
+              </View>
               <CategoriesList list={this.state.Categories} />
               <SuggestionList list={this.state.listSuggestions} />
             </Home>
@@ -118,6 +129,17 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  videoContainer: {
+    flex: 1,
+    height: 200,
   },
 });
 

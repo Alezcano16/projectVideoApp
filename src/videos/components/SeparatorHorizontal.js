@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-const Separator = props => {
+
+const SeparatorHorizontal = props => {
   return (
     <View
       style={[
@@ -15,9 +16,9 @@ const Separator = props => {
 };
 const styles = StyleSheet.create({
   separator: {
-    borderTopWidth: 1,
-    paddingVertical: 5,
+    flex: 1,
+    marginHorizontal: 5,
   },
 });
 
-export default Separator;
+export default SeparatorHorizontal;

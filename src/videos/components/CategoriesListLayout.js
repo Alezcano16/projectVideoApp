@@ -1,19 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 
-const SuggestionListLayout = props => {
+const CategoryListLayout = props => {
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require('../../assets/backgronund.png')}
+      style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
       {props.children}
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    paddingVertical: 10,
+    paddingVertical: 30,
+    paddingHorizontal: 10,
   },
   title: {
     width: '100%',
@@ -22,9 +25,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     fontWeight: 'bold',
-    marginLeft: 10,
     lineHeight: 30,
   },
 });
 
-export default SuggestionListLayout;
+export default CategoryListLayout;

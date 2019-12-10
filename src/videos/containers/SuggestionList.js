@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import Layout from '../../videos/components/SuggestionListLayout';
 import Empty from '../../videos/components/Empty';
 import Separator from '../../videos/components/Separator';
@@ -28,16 +28,16 @@ class SuggestionList extends Component {
   };
   keyExtractor = item => item.id.toString();
   render() {
-    const list = [
-      {
-        title: 'Avengers',
-        key: '1',
-      },
-      {
-        title: 'X-Men',
-        key: '2',
-      },
-    ];
+    // const list = [
+    //   {
+    //     title: 'Avengers',
+    //     key: '1',
+    //   },
+    //   {
+    //     title: 'X-Men',
+    //     key: '2',
+    //   },
+    // ];
     console.log(this.props.list);
     return (
       <Layout title="Recomendado para ti">
@@ -57,7 +57,7 @@ class SuggestionList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 200,
+    height: 300,
   },
 });
 export default SuggestionList;
