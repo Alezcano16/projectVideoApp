@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Video from 'react-native-video';
+import {View, StyleSheet,Text} from 'react-native';
+
 const PlayerLayout = props => {
   return (
     <View style={styles.container}>
       <View style={styles.video}>{props.children}</View>
       {props.loading && <View style={styles.overlay}>{props.loader}</View>}
+      {props.control}
     </View>
   );
 };
@@ -15,6 +16,7 @@ const styles = StyleSheet.create({
     paddingTop: '56.25%',
   },
   video: {
+    zIndex: 0,
     position: 'absolute',
     top: 0,
     left: 0,

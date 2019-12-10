@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, ActivityIndicator} from 'react-native';
+import {StyleSheet, ActivityIndicator, Text} from 'react-native';
 import Video from 'react-native-video';
 import Layout from './PlayerLayout';
+import ControlLayout from '../components/ControlLayout';
+import PlayPause from '../components/PlayPause';
 export default class Player extends Component {
   state = {
     loading: true,
+    paused: false,
+  };
+  PlayPause = () => {
+    this.setState({paused: !this.state.paused});
   };
   onBuffer = ({isBuffering}) => {
     this.setState({
@@ -28,12 +34,21 @@ export default class Player extends Component {
           ref={ref => {
             this.player = ref;
           }} // Store reference
-          controls
+          paused={true}
           resizeMode="contain"
           onBuffer={this.onBuffer} // Callback when remote video is buffering
           onError={this.videoError} // Callback when video cannot be loaded
           onLoad={this.onLoad}
           style={styles.backgroundVideo}
+          controls
+          control={
+            <ControlLayout>
+              <PlayPause onPress={this.PlayPause} />
+              <Text>ProgresBar</Text>
+              <Text>Time left</Text>
+              <Text>FullScreen</Text>
+            </ControlLayout>
+          }
         />
       </Layout>
     );

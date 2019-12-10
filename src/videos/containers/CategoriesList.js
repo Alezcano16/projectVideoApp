@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {FlatList, StyleSheet, ScrollView} from 'react-native';
 import Layout from '../../videos/components/CategoriesListLayout';
 import Empty from '../../videos/components/Empty';
 import Separator from '../../videos/components/SeparatorHorizontal';
@@ -19,16 +19,14 @@ export default class CategoryList extends Component {
   render() {
     return (
       <Layout title="Categorías">
-        <SafeAreaView style={styles.container}>
-          <FlatList
-            horizontal={true}
-            keyExtractor={this.keyExtractor}
-            data={this.props.list}
-            ItemSeparatorComponent={this.ItemSeparator}
-            ListEmptyComponent={this.RenderEmpty}
-            renderItem={this.RenderItem}
-          />
-        </SafeAreaView>
+        <FlatList
+          horizontal={true}
+          keyExtractor={this.keyExtractor}
+          data={this.props.list}
+          ItemSeparatorComponent={this.ItemSeparator}
+          ListEmptyComponent={this.RenderEmpty}
+          renderItem={this.RenderItem}
+        />
       </Layout>
     );
   }
