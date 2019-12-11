@@ -3,10 +3,8 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,
   Text,
   StatusBar,
-  Image,
 } from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
@@ -14,29 +12,41 @@ import SuggestionList from './src/videos/containers/SuggestionList';
 import CategoriesList from './src/videos/containers/CategoriesList';
 import API from './src/utils/Api';
 
-import {
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Player from './src/players/containers/Player';
+
+//importar redux provider
+
+import {Provider} from 'react-redux';
+import store from './store';
 type Props = {};
 class App extends Component<Props> {
   state = {
-    listSuggestions: [],
-    listCategories: [],
+    // listSuggestions: [],
+    // listCategories: [],
   };
   async componentDidMount() {
     const MoviesSuggestion = await API.getSuggestion(10);
-    const Categories = await API.getMovies();
-    console.log(Categories);
-    this.setState({listSuggestions: MoviesSuggestion, Categories: Categories});
+    store.dispatch({
+      type: 'SET_SUGGESTION_LIST',
+      payload: {
+        MoviesSuggestion,
+      },
+    });
+    const MoviesCategories = await API.getMovies();
+    //console.log(Categories);
+    //this.setState({listSuggestions: MoviesSuggestion, Categories: Categories});
     //this.fetchData();
+    store.dispatch({
+      type: 'SET_MOVIE_CATEGORIES',
+      payload: {
+        MoviesCategories,
+      },
+    });
   }
   render() {
     return (
-      <>
+      <Provider store={store}>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
           <ScrollView
@@ -47,12 +57,12 @@ class App extends Component<Props> {
                 <Text>Hola desde Header </Text>
               </Header>
               <Player />
-              <CategoriesList list={this.state.Categories} />
-              <SuggestionList list={this.state.listSuggestions} />
+              <CategoriesList />
+              <SuggestionList />
             </Home>
           </ScrollView>
         </SafeAreaView>
-      </>
+      </Provider>
     );
   }
 }

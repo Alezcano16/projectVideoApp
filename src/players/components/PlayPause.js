@@ -13,7 +13,6 @@ const PlayPause = props => {
       onPress={props.onPress}
       style={styles.container}
       underlayColor="red">
-      <Text style={{color:'red'}}>asas1111</Text>
       {props.paused ? (
         <Text style={styles.button}>PLAY</Text>
       ) : (

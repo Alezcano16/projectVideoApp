@@ -4,8 +4,9 @@ import Layout from '../../videos/components/CategoriesListLayout';
 import Empty from '../../videos/components/Empty';
 import Separator from '../../videos/components/SeparatorHorizontal';
 import Category from '../../videos/components/Category';
+import {connect} from 'react-redux';
 
-export default class CategoryList extends Component {
+class CategoryList extends Component {
   RenderEmpty = () => {
     return <Empty text="No hay Sugerencias" />;
   };
@@ -37,3 +38,12 @@ const styles = StyleSheet.create({
     height: 100,
   },
 });
+const mapStateToProps = state => {
+  console.log(state);
+  return {list: state.MoviesCategories};
+};
+
+export default connect(
+  mapStateToProps,
+  null,
+)(CategoryList);

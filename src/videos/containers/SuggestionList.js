@@ -4,7 +4,7 @@ import Layout from '../../videos/components/SuggestionListLayout';
 import Empty from '../../videos/components/Empty';
 import Separator from '../../videos/components/Separator';
 import Suggestions from '../../videos/components/Suggestions';
-
+import {connect} from 'react-redux';
 class SuggestionList extends Component {
   RenderEmpty = () => {
     return <Empty text="No hay Sugerencias" />;
@@ -61,4 +61,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
-export default SuggestionList;
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {list: state.MoviesSuggestion};
+};
+
+export default connect(
+  mapStateToProps,
+  null,
+)(SuggestionList);
