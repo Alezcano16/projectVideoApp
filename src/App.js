@@ -15,7 +15,7 @@ import SuggestionList from './videos/containers/SuggestionList';
 import CategoriesList from './videos/containers/CategoriesList';
 import Movie from './screens/components/Movie';
 import API from './utils/Api';
-
+import Search from './sections/containers/Search';
 class AppLayout extends Component {
   state = {
     // listSuggestions: [],
@@ -52,9 +52,8 @@ class AppLayout extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Home>
-          <Header>
-            <Text>Hola desde Header </Text>
-          </Header>
+          <Header />
+          <Search />
           <CategoriesList />
           <SuggestionList />
         </Home>
