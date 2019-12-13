@@ -6,15 +6,16 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {connect} from 'react-redux';
+
 import Home from './screens/containers/Home';
 import Header from './sections/components/Header';
 import SuggestionList from './videos/containers/SuggestionList';
 import CategoriesList from './videos/containers/CategoriesList';
-
+import Movie from './screens/components/Movie';
 import API from './utils/Api';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Player from './players/containers/Player';
-import {connect} from 'react-redux';
+
 class AppLayout extends Component {
   state = {
     // listSuggestions: [],
@@ -39,16 +40,25 @@ class AppLayout extends Component {
       },
     });
   }
+
   render() {
+    if (this.props.selectedMovie) {
+      return (
+        <SafeAreaView style={styles.container}>
+          <Movie />
+        </SafeAreaView>
+      );
+    }
     return (
-      <Home>
-        <Header>
-          <Text>Hola desde Header </Text>
-        </Header>
-        <Player />
-        <CategoriesList />
-        <SuggestionList />
-      </Home>
+      <SafeAreaView style={styles.container}>
+        <Home>
+          <Header>
+            <Text>Hola desde Header </Text>
+          </Header>
+          <CategoriesList />
+          <SuggestionList />
+        </Home>
+      </SafeAreaView>
     );
   }
 }
@@ -101,6 +111,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  container: {
+    flex: 1,
+  },
 });
 
-export default connect(null)(AppLayout);
+const mapStateToProps = state => {
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+export default connect(mapStateToProps)(AppLayout);

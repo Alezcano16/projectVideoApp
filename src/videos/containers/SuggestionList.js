@@ -12,6 +12,14 @@ class SuggestionList extends Component {
   ItemSeparator = () => {
     return <Separator />;
   };
+  viewMovie = item => {
+    this.props.dispatch({
+      type: 'SET_SELECTED_MOVIE',
+      payload: {
+        movie: item,
+      },
+    });
+  };
   fetchData = async () => {
     this.setState({loading: true, error: null});
     try {
@@ -24,20 +32,17 @@ class SuggestionList extends Component {
     }
   };
   RenderItem = ({item}) => {
-    return <Suggestions {...item} />;
+    return (
+      <Suggestions
+        {...item}
+        onPress={() => {
+          this.viewMovie(item);
+        }}
+      />
+    );
   };
   keyExtractor = item => item.id.toString();
   render() {
-    // const list = [
-    //   {
-    //     title: 'Avengers',
-    //     key: '1',
-    //   },
-    //   {
-    //     title: 'X-Men',
-    //     key: '2',
-    //   },
-    // ];
     console.log(this.props.list);
     return (
       <Layout title="Recomendado para ti">
