@@ -6,6 +6,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {connect} from 'react-redux';
 

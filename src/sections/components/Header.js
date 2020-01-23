@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flexDirection: 'row',
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
   },
   logo: {
     width: 80,
